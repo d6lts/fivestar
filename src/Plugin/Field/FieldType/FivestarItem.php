@@ -237,36 +237,55 @@ class FivestarItem extends FieldItemBase {
    * {@inheritdoc}
    */
   public function postSave($update) {
-    $vote_rating = 0;
     $entity = $this->getEntity();
     $field_definition = $this->getFieldDefinition();
-    $field_name = $field_definition->getName();
     $field_settings = $field_definition->getSettings();
     $vote_manager = \Drupal::service('fivestar.vote_manager');
     $target_entity = $this->getTargetEntity($entity, $field_settings);
+    $vote_rating = $entity->get($field_definition->getName())->rating ?: 0;
 
-    if ($entity->isPublished()) {
-      $vote_rating = $entity->get($field_name)->rating ?: 0;
+    // In order to get correct vote owner need to do it based on fivestar field
+    // settings, when selected "Rated while viewing" mode, then have
+    // to use current user. For "Rated while editing" mode - entity owner user.
+    $owner = ($field_settings['rated_while'] == 'viewing') ?
+      \Drupal::currentUser() :
+      $entity->getOwner();
+
+    if ($update) {
+      // Delete previous votes.
+      $criteria = [
+        'entity_id' => $entity->id(),
+        'entity_type' => $entity->getEntityTypeId(),
+        'type' => $field_settings['vote_type'],
+        'user_id' => $owner->id(),
+      ];
+      if ($owner->isAnonymous()) {
+        $ip_address = \Drupal::request()->getClientIp();
+        $criteria['vote_source'] = hash('sha256', serialize($ip_address));
+      }
+      foreach ($vote_manager->getVotesByCriteria($criteria) as $vote) {
+        $vote->delete();
+      }
+
+      // Delete votes from target entity.
+      if (!empty($target_entity)) {
+        $criteria['entity_id'] = $target_entity->id();
+        $criteria['entity_type'] = $target_entity->getEntityTypeId();
+        foreach ($vote_manager->getVotesByCriteria($criteria) as $target_vote) {
+          $target_vote->delete();
+        }
+      }
     }
 
-    // Delete previous user vote.
-    $current_user = \Drupal::currentUser();
-    $criteria = [
-      'entity_id' => $entity->id(),
-      'entity_type' => $entity->getEntityTypeId(),
-      'type' => $field_settings['vote_type'],
-      'user_id' => $current_user->id(),
-    ];
-    if ($current_user->isAnonymous()) {
-      $criteria['vote_source'] = hash('sha256', serialize(\Drupal::request()->getClientIp()));
-    }
-    foreach ($vote_manager->getVotesByCriteria($criteria) as $vote) {
-      $vote->delete();
-    }
-
-    $vote_manager->addVote($entity, $vote_rating, $field_settings['vote_type']);
-    if (!empty($target_entity)) {
-      $vote_manager->addVote($target_entity, $vote_rating, $field_settings['vote_type']);
+    // Add new vote.
+    $vote_manager->addVote($entity, $vote_rating, $field_settings['vote_type'], $owner->id());
+    if (!empty($target_entity) && $entity->isPublished()) {
+      $vote_manager->addVote(
+        $target_entity,
+        $vote_rating,
+        $field_settings['vote_type'],
+        $owner->id()
+      );
     }
   }
 

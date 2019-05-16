@@ -304,7 +304,10 @@ class Fivestar extends FormElement {
   public static function getElementDefaultValue(array $element) {
     switch ($element['#settings']['display_format']) {
       case 'average':
-        $default_value = ($element['#values']['vote_count'] > 1) ? $element['#values']['vote_average'] : $element['#default_value'];
+        $widget_is_average = ($element['#settings']['display_format'] == 'average');
+        $default_value = $widget_is_average && !empty($element['#values']['vote_average']) ?
+          $element['#values']['vote_average'] :
+          $element['#default_value'];
         break;
 
       case 'user':
