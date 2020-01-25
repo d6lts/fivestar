@@ -99,8 +99,8 @@ class FivestarItem extends FieldItemBase {
       '#title' => $this->t('Vote type'),
       '#options' => $vote_manager->getVoteTypes(),
       '#description' => $this->t(
-        'The vote type this rating will affect. 
-          Enter a property on which that this rating will affect, 
+        'The vote type this rating will affect.
+          Enter a property on which that this rating will affect,
           such as <em>quality</em>, <em>satisfaction</em>, <em>overall</em>, etc.
           You can add new vote type %vote_types_link.', [
             '%vote_types_link' => $vote_types_link,
@@ -168,7 +168,7 @@ class FivestarItem extends FieldItemBase {
       '#type' => 'textfield',
       '#title' => $this->t('Target bridge field'),
       '#description' => $this->t(
-        'Machine name of field that binds current entity with entity that contain target fivestar field. 
+        'Machine name of field that binds current entity with entity that contain target fivestar field.
         The field should have "entity_reference" type.'
       ),
       '#states' => $states,
@@ -244,12 +244,7 @@ class FivestarItem extends FieldItemBase {
     $target_entity = $this->getTargetEntity($entity, $field_settings);
     $vote_rating = $entity->get($field_definition->getName())->rating ?: 0;
 
-    // In order to get correct vote owner need to do it based on fivestar field
-    // settings, when selected "Rated while viewing" mode, then have
-    // to use current user. For "Rated while editing" mode - entity owner user.
-    $owner = ($field_settings['rated_while'] == 'viewing') ?
-      \Drupal::currentUser() :
-      $entity->getOwner();
+    $owner = $this->getVoteOwner($entity, $field_settings['rated_while']);
 
     if ($update) {
       // Delete previous votes.
@@ -344,6 +339,35 @@ class FivestarItem extends FieldItemBase {
       foreach ($target_votes as $target_vote) {
         $target_vote->delete();
       }
+    }
+  }
+
+  /**
+   * Get owner for vote.
+   *
+   * In order to get correct vote owner need to do it based on fivestar field
+   * settings, when selected "Rating mode viewing" mode, then have to use current user.
+   * For "Rating mode editing" mode - if entity have method "getOwner" use entity owner,
+   * otherwise the current user has to be used.
+   *
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+   *  The entity from which try to get owner.
+   * @param string $rating_mode
+   *  Determines under what conditions a user can leave a review.
+   *
+   * @return \Drupal\Core\Session\AccountInterface
+   *   The owner entity.
+   */
+  private function getVoteOwner($entity, $rating_mode) {
+    switch ($rating_mode) {
+      case 'viewing':
+        return \Drupal::currentUser();
+
+      case 'editing':
+        if (method_exists($entity, 'getOwner')) {
+          return $entity->getOwner();
+        }
+        return \Drupal::currentUser();
     }
   }
 
