@@ -66,12 +66,21 @@ function fivestar_theme() {
     ],
     'fivestar_static' => [
       'function' => 'theme_fivestar_static',
-      'variables' => ['rating' => NULL, 'stars' => 5, 'vote_type' => 'vote', 'widget' => ['name' => 'default', 'css' => '']],
+      'variables' => [
+        'rating' => NULL,
+        'stars' => 5,
+        'vote_type' => 'vote',
+        'widget' => ['name' => 'default', 'css' => ''],
+      ],
       'file' => 'includes/fivestar.theme.inc',
     ],
     'fivestar_static_element' => [
       'function' => 'theme_fivestar_static_element',
-      'variables' => ['star_display' => NULL, 'title' => NULL, 'description' => NULL],
+      'variables' => [
+        'star_display' => NULL,
+        'title' => NULL,
+        'description' => NULL,
+      ],
       'file' => 'includes/fivestar.theme.inc',
     ],
     'fivestar_summary' => [
@@ -87,7 +96,13 @@ function fivestar_theme() {
     ],
     'fivestar_preview' => [
       'function' => 'theme_fivestar_preview',
-      'variables' => ['style' => NULL, 'text' => NULL, 'stars' => NULL, 'unvote' => NULL, 'title' => NULL],
+      'variables' => [
+        'style' => NULL,
+        'text' => NULL,
+        'stars' => NULL,
+        'unvote' => NULL,
+        'title' => NULL,
+      ],
       'file' => 'includes/fivestar.theme.inc',
     ],
     'fivestar_preview_widget' => [

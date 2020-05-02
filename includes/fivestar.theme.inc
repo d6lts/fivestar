@@ -306,9 +306,11 @@ function theme_fivestar_summary($variables) {
     if (!empty($microdata['average_rating']['#attributes'])) {
       $average_rating_microdata = ($microdata['average_rating']['#attributes']);
     }
-    $output .= '<span class="average-rating">' . t("Average: <span {$average_rating_microdata}>@stars</span>", [
-        '@stars' => $average_stars,
-      ]) . '</span>';
+    $output .= '<span class="average-rating">';
+    $output .= t("Average: <span {$average_rating_microdata}>@stars</span>", [
+      '@stars' => $average_stars,
+    ]);
+    $output .= '</span>';
   }
 
   if (isset($votes)) {

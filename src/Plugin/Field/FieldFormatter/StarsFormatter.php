@@ -91,7 +91,7 @@ class StarsFormatter extends FiveStarFormatterBase {
         'class' => [
           'fivestar-widgets',
           'clearfix',
-        ]
+        ],
       ],
       '#pre_render' => [
         [$this, 'previewsExpand'],

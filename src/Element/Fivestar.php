@@ -216,29 +216,29 @@ class Fivestar extends FormElement {
     switch ($settings['text_format']) {
       case 'user':
         return [
-            '#user_rating' => $values['vote_user'],
-            '#votes' => $settings['display_format'] == 'dual' ? NULL : $values['vote_count'],
-          ] + $base_element_data;
+          '#user_rating' => $values['vote_user'],
+          '#votes' => $settings['display_format'] == 'dual' ? NULL : $values['vote_count'],
+        ] + $base_element_data;
 
       case 'average':
         return [
-            '#average_rating' => $values['vote_average'],
-            '#votes' => $values['vote_count'],
-          ] + $base_element_data;
+          '#average_rating' => $values['vote_average'],
+          '#votes' => $values['vote_count'],
+        ] + $base_element_data;
 
       case 'smart':
         return ($settings['display_format'] == 'dual' && !$values['vote_user']) ? [] : [
-            '#user_rating' => $values['vote_user'],
-            '#average_rating' => $values['vote_user'] ? NULL : $values['vote_average'],
-            '#votes' => $settings['display_format'] == 'dual' ? NULL : $values['vote_count'],
-          ] + $base_element_data;
+          '#user_rating' => $values['vote_user'],
+          '#average_rating' => $values['vote_user'] ? NULL : $values['vote_average'],
+          '#votes' => $settings['display_format'] == 'dual' ? NULL : $values['vote_count'],
+        ] + $base_element_data;
 
       case 'dual':
         return [
-            '#user_rating' => $values['vote_user'],
-            '#average_rating' => $settings['display_format'] == 'dual' ? NULL : $values['vote_average'],
-            '#votes' => $settings['display_format'] == 'dual' ? NULL : $values['vote_count'],
-          ] + $base_element_data;
+          '#user_rating' => $values['vote_user'],
+          '#average_rating' => $settings['display_format'] == 'dual' ? NULL : $values['vote_average'],
+          '#votes' => $settings['display_format'] == 'dual' ? NULL : $values['vote_count'],
+        ] + $base_element_data;
 
       case 'none':
         return [];

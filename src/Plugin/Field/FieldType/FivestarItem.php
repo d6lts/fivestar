@@ -98,14 +98,9 @@ class FivestarItem extends FieldItemBase {
       '#required' => TRUE,
       '#title' => $this->t('Vote type'),
       '#options' => $vote_manager->getVoteTypes(),
-      '#description' => $this->t(
-        'The vote type this rating will affect.
-          Enter a property on which that this rating will affect,
-          such as <em>quality</em>, <em>satisfaction</em>, <em>overall</em>, etc.
-          You can add new vote type %vote_types_link.', [
-            '%vote_types_link' => $vote_types_link,
-        ]
-      ),
+      '#description' => $this->t('The vote type this rating will affect. Enter a property on which that this rating will affect, such as <em>quality</em>, <em>satisfaction</em>, <em>overall</em>, etc. You can add new vote type %vote_types_link.', [
+        '%vote_types_link' => $vote_types_link,
+      ]),
       '#default_value' => $this->getSetting('vote_type'),
       '#show_static_result' => $has_data,
     ];
