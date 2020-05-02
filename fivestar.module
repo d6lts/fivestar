@@ -240,7 +240,7 @@ function fivestar_library_info_build() {
   $libraries = [];
   $module_path = drupal_get_path('module', 'fivestar');
   foreach (\Drupal::moduleHandler()->invokeAll('fivestar_widgets') as $path => $widget) {
-    // @todo ok, that's wierd.
+    // @todo ok, that's weird.
     $path = str_replace($module_path . '/', '', $path);
     $name = mb_strtolower($widget);
     $libraries["fivestar.{$name}"] = [
