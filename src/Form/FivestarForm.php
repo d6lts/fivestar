@@ -97,12 +97,13 @@ class FivestarForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $context = $form_state->get('context');
-    
+
     if (isset($context['entity'])) {
       $entity = $context['entity'];
       $fivestar_field_name = $context['field_definition']->getName();
       if ($entity->hasField($fivestar_field_name)) {
-        // For votingapi value will be save during save rating value to field storage.
+        // For votingapi value will be save during save rating value to
+        // field storage.
         $entity->set($fivestar_field_name, $form_state->getValue('vote'));
         $entity->save();
       }

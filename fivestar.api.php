@@ -32,8 +32,8 @@ function hook_fivestar_widgets() {
  * Implements hook_fivestar_access().
  *
  * This hook is called before every vote is cast through Fivestar. It allows
- * modules to allow or deny voting on any type of entity, such as nodes, users, or
- * comments.
+ * modules to allow or deny voting on any type of entity, such as nodes, users,
+ * or comments.
  *
  * @param $entity_type
  *   Type entity.

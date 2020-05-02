@@ -78,7 +78,8 @@ class StarsWidget extends FiveStartWidgetBase {
     $is_field_config_form = ($form_state->getBuildInfo()['form_id'] == 'field_config_edit_form');
     $voting_is_allowed = (bool) ($settings['rated_while'] == 'editing') || $is_field_config_form;
 
-    // To prevent error during rating settings save set positive rating value by default.
+    // To prevent error during rating settings save set positive rating value
+    // by default.
     $default_rating = $is_field_config_form ? 80 : 0;
 
     $element['rating'] = [

@@ -341,9 +341,9 @@ class FivestarItem extends FieldItemBase {
    * Get owner for vote.
    *
    * In order to get correct vote owner need to do it based on fivestar field
-   * settings, when selected "Rating mode viewing" mode, then have to use current user.
-   * For "Rating mode editing" mode - if entity have method "getOwner" use entity owner,
-   * otherwise the current user has to be used.
+   * settings, when selected "Rating mode viewing" mode, then have to use
+   * current user. For "Rating mode editing" mode - if entity have method
+   * "getOwner" use entity owner, otherwise the current user has to be used.
    *
    * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
    *  The entity from which try to get owner.

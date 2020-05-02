@@ -8,7 +8,8 @@ comments in Drupal. It features:
  * Per-nodetype configurability
  * Support for anonymous voters
  * Spam protection to keep users from filling your DB with bogus votes
- * Easy-to-use integration with Views module for lists sorted by rating, or filtered by min/max ratings
+ * Easy-to-use integration with Views module for lists sorted by rating, or
+   filtered by min/max ratings
  * A Fivestar CCK field for use in custom node types
  * An easy-to-use Form API element type for use in other modules
 
@@ -146,37 +147,41 @@ in the Field list under "Fivestar Rating: [Field name]".
 Creating a Fivestar Set
 -----------------------
 
-1. Open your favorite image editor and create an image that is 3 times as high as it is wide.
-   The default size for Fivestar (and the easiest to work with) is 16x48 pixels.
+1. Open your favorite image editor and create an image that is 3 times as high
+   as it is wide. The default size for Fivestar (and the easiest to work with)
+   is 16x48 pixels.
 
 2. Setup guides at 16 pixels and 32 pixels. This splits your canvas into thirds.
 
-3. Create a star icon in the top third. When satisfied, copy it into the middle and bottom
-   thirds of the image. Change the middle and bottom copies to your liking. Fivestar will
-   use the top, middle, and bottom images for each state of the star.
+3. Create a star icon in the top third. When satisfied, copy it into the middle
+   and bottom thirds of the image. Change the middle and bottom copies to your
+   liking. Fivestar will use the top, middle, and bottom images for each state
+   of the star.
    
    Top      -> Off
    Middle   -> On
    Bottom   -> Hover
 
-4. Save your image as "star.png" in a new directory. The name of your directory will be the label
-   for your set of stars, spaces are not allowed.
+4. Save your image as "star.png" in a new directory. The name of your directory
+   will be the label for your set of stars, spaces are not allowed.
 
-5. Do the same thing for a cancel image, only there are only 2 states for a cancel image, so your
-   image will be 16 pixels by 32pixels. Setup a guide at 16 pixels so your canvas is split in half.
+5. Do the same thing for a cancel image, only there are only 2 states for a
+   cancel image, so your image will be 16 pixels by 32pixels. Setup a guide at
+   16 pixels so your canvas is split in half.
 
-6. Create a cancel icon in the top half. Then duplicate it into the bottom half. The cancel states
-   are simply Off and Hover.
+6. Create a cancel icon in the top half. Then duplicate it into the bottom half.
+   The cancel states are simply Off and Hover.
 
    Top      -> Off
    Bottom   -> Hover
 
 7. Save your cancel image as "cancel.png" in the directory create in step 4.
 
-8. Create the CSS stylesheet. The easiest way to make this stylesheet is to copy an existing CSS
-   file from another set of stars. The "Basic" set provides an excellent example for a 16x16 star,
-   because it only changes the background image as necessary. If you're making a larger or smaller
-   size for your stars than 16x16 pixels, the "Minimal" and "Outline" sets make for a good example.
+8. Create the CSS stylesheet. The easiest way to make this stylesheet is to copy
+   an existing CSS file from another set of stars. The "Basic" set provides an
+   excellent example for a 16x16 star, because it only changes the background
+   image as necessary. If you're making a larger or smaller size for your stars
+   than 16x16 pixels, the "Minimal" and "Outline" sets make for a good example.
 
 Contributing
 ------------
