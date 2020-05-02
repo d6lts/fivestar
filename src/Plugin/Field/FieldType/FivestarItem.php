@@ -282,9 +282,10 @@ class FivestarItem extends FieldItemBase {
   /**
    * Get target entity.
    *
-   * @param FieldableEntityInterface $entity
+   * @param \Drupa\Core\Entity\FieldableEntityInterface $entity
    * @param array $field_settings
-   * @return FieldableEntityInterface|NULL
+   *
+   * @return \Drupa\Core\Entity\FieldableEntityInterface|null
    */
   public function getTargetEntity(FieldableEntityInterface $entity, array $field_settings) {
     if ($field_settings['enable_voting_target'] !== 1) {
@@ -346,9 +347,9 @@ class FivestarItem extends FieldItemBase {
    * "getOwner" use entity owner, otherwise the current user has to be used.
    *
    * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
-   *  The entity from which try to get owner.
+   *   The entity from which try to get owner.
    * @param string $rating_mode
-   *  Determines under what conditions a user can leave a review.
+   *   Determines under what conditions a user can leave a review.
    *
    * @return \Drupal\Core\Session\AccountInterface
    *   The owner entity.

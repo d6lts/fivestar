@@ -44,7 +44,7 @@ function hook_fivestar_widgets() {
  * @param $uid
  *   The user ID trying to cast the vote.
  *
- * @return boolean or NULL
+ * @return bool|null
  *   Returns TRUE if voting is supported on this object.
  *   Returns NULL if voting is not supported on this object by this module.
  *   If needing to absolutely deny all voting on this object, regardless

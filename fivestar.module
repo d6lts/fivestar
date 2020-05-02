@@ -140,16 +140,16 @@ function fivestar_theme() {
  * modules to allow voting on any type of entity, such as nodes, users, or
  * comments.
  *
- * @param $entity_type
+ * @param string $entity_type
  *   Type entity.
- * @param $id
+ * @param string $id
  *   Identifier within the type.
- * @param $vote_type
+ * @param string $vote_type
  *   The VotingAPI tag string.
- * @param $uid
+ * @param int $uid
  *   The user ID trying to cast the vote.
  *
- * @return boolean or NULL
+ * @return bool|null
  *   Returns TRUE if voting is supported on this object.
  *   Returns NULL if voting is not supported on this object by this module.
  *   If needing to absolutely deny all voting on this object, regardless

@@ -31,8 +31,8 @@ class VoteManager {
   /**
    * Constructs a new VoteManager object.
    *
-   * @param EntityTypeManagerInterface $entity_type_manager
-   * @param VoteResultFunctionManager $vote_result_manager
+   * @param \Drupa\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * @param \Drupal\votingapi\VoteResultFunctionManager $vote_result_manager
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager) {
     $this->entityTypeManager = $entity_type_manager;
@@ -58,10 +58,10 @@ class VoteManager {
   /**
    * Add vote.
    *
-   * @param FieldableEntityInterface $entity
+   * @param \Drupa\Core\Entity\FieldableEntityInterface $entity
    * @param int $rating
    * @param string $vote_type
-   * @param int|NULL $uid
+   * @param int|null $uid
    *
    * @retrn \Drupal\votingapi\Entity\Vote
    */

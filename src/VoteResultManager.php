@@ -22,7 +22,7 @@ class VoteResultManager {
   /**
    * Constructs a new VoteResultManager object.
    *
-   * @param VoteResultFunctionManager $vote_result_manager
+   * @param \Drupal\votingapi\VoteResultFunctionManager $vote_result_manager
    */
   public function __construct(VoteResultFunctionManager $vote_result_manager) {
     $this->voteResultManager = $vote_result_manager;
@@ -31,8 +31,9 @@ class VoteResultManager {
   /**
    * Get votes for passed entity based on vote type.
    *
-   * @param FieldableEntityInterface $entity
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
    * @param string $vote_type
+   *
    * @return array
    */
   public function getResultsByVoteType(FieldableEntityInterface $entity, $vote_type) {
@@ -47,7 +48,8 @@ class VoteResultManager {
   /**
    * Get all votes results for passed entity.
    *
-   * @param FieldableEntityInterface $entity
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+   *
    * @return array
    */
   public function getResults(FieldableEntityInterface $entity) {
@@ -76,7 +78,7 @@ class VoteResultManager {
   /**
    * Recalculate votes results.
    *
-   * @param FieldableEntityInterface $entity
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
    */
   public function recalculateResults(FieldableEntityInterface $entity) {
     $this->voteResultManager->recalculateResults(

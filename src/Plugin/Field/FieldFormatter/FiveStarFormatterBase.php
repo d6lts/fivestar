@@ -35,4 +35,5 @@ abstract class FiveStarFormatterBase extends FormatterBase {
   protected function getAllWidget() {
     return \Drupal::moduleHandler()->invokeAll('fivestar_widgets');
   }
+
 }
