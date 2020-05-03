@@ -354,7 +354,7 @@ class FivestarItem extends FieldItemBase {
    * @return \Drupal\Core\Session\AccountInterface
    *   The owner entity.
    */
-  private function getVoteOwner($entity, $rating_mode) {
+  protected function getVoteOwner(FieldableEntityInterface $entity, $rating_mode) {
     switch ($rating_mode) {
       case 'viewing':
         return \Drupal::currentUser();
