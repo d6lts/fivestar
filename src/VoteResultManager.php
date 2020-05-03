@@ -23,6 +23,7 @@ class VoteResultManager {
    * Constructs a new VoteResultManager object.
    *
    * @param \Drupal\votingapi\VoteResultFunctionManager $vote_result_manager
+   *   The vote result manager.
    */
   public function __construct(VoteResultFunctionManager $vote_result_manager) {
     $this->voteResultManager = $vote_result_manager;

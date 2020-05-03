@@ -282,10 +282,10 @@ class FivestarItem extends FieldItemBase {
   /**
    * Get target entity.
    *
-   * @param \Drupa\Core\Entity\FieldableEntityInterface $entity
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
    * @param array $field_settings
    *
-   * @return \Drupa\Core\Entity\FieldableEntityInterface|null
+   * @return \Drupal\Core\Entity\FieldableEntityInterface|null
    */
   public function getTargetEntity(FieldableEntityInterface $entity, array $field_settings) {
     if ($field_settings['enable_voting_target'] !== 1) {
