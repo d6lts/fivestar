@@ -6,7 +6,7 @@
  */
 
 /**
- * Implements hook_fivestar_widgets().
+ * Hook to add custom widgets to Fivestar.
  *
  * This hook allows other modules to create additional custom widgets for
  * the fivestar module.
@@ -29,19 +29,19 @@ function hook_fivestar_widgets() {
 }
 
 /**
- * Implements hook_fivestar_access().
+ * Hook to alter access to voting in Fivestar.
  *
  * This hook is called before every vote is cast through Fivestar. It allows
  * modules to allow or deny voting on any type of entity, such as nodes, users,
  * or comments.
  *
- * @param $entity_type
+ * @param string $entity_type
  *   Type entity.
- * @param $id
+ * @param string $id
  *   Identifier within the type.
- * @param $tag
+ * @param string $vote_type
  *   The VotingAPI tag string.
- * @param $uid
+ * @param int $uid
  *   The user ID trying to cast the vote.
  *
  * @return bool|null

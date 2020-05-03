@@ -135,26 +135,6 @@ function fivestar_theme() {
 
 /**
  * Implements hook_fivestar_access().
- *
- * This hook is called before every vote is cast through Fivestar. It allows
- * modules to allow voting on any type of entity, such as nodes, users, or
- * comments.
- *
- * @param string $entity_type
- *   Type entity.
- * @param string $id
- *   Identifier within the type.
- * @param string $vote_type
- *   The VotingAPI tag string.
- * @param int $uid
- *   The user ID trying to cast the vote.
- *
- * @return bool|null
- *   Returns TRUE if voting is supported on this object.
- *   Returns NULL if voting is not supported on this object by this module.
- *   If needing to absolutely deny all voting on this object, regardless
- *   of permissions defined in other modules, return FALSE. Note if all
- *   modules return NULL, stating no preference, then access will be denied.
  */
 function fivestar_fivestar_access($entity_type, $id, $vote_type, $uid) {
   // Check to see if there is a field instance on this entity.
@@ -217,14 +197,6 @@ function fivestar_form_field_ui_field_edit_form_alter(&$form, $form_state) {
 
 /**
  * Implements hook_fivestar_widgets().
- *
- * This hook allows other modules to create additional custom widgets for
- * the fivestar module.
- *
- * @return array
- *   An array of key => value pairs suitable for inclusion as the #options in a
- *   select or radios form element. Each key must be the location of a css
- *   file for a fivestar widget. Each value should be the name of the widget.
  */
 function fivestar_fivestar_widgets() {
   $widgets = &drupal_static(__FUNCTION__);
