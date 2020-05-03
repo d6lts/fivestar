@@ -8,7 +8,7 @@ div.fivestar-widget .star {
 .fivestar-combo-stars .fivestar-static-form-item {
   float: right;
   margin-left: 40px;
-  margin-right: 0px;
+  margin-right: 0;
 }
 .fivestar-combo-stars .fivestar-form-item {
   float: right; /* RTL */
