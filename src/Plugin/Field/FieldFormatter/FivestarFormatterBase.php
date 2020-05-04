@@ -26,7 +26,7 @@ abstract class FivestarFormatterBase extends FormatterBase {
       $vars = [
         '#theme' => 'fivestar_preview_widget',
         '#css' => $css,
-        '#name' => strtolower($element[$css]['#title']),
+        '#name' => mb_strtolower($element[$css]['#title']),
       ];
       $element[$css]['#description'] = \Drupal::service('renderer')->render($vars);
     }
