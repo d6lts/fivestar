@@ -5,11 +5,11 @@ namespace Drupal\fivestar\Plugin\Field\FieldWidget;
 use Drupal\Core\Field\WidgetBase;
 
 /**
- * Class FiveStartWidgetBase.
+ * Class FivestarWidgetBase.
  *
  * @package Drupal\fivestar\Plugin\Field\FieldWidget
  */
-abstract class FiveStartWidgetBase extends WidgetBase {
+abstract class FivestarWidgetBase extends WidgetBase {
 
   /**
    * @return array

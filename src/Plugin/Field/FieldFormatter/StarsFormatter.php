@@ -17,7 +17,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   weight = 1
  * )
  */
-class StarsFormatter extends FiveStarFormatterBase {
+class StarsFormatter extends FivestarFormatterBase {
 
   /**
    * {@inheritdoc}

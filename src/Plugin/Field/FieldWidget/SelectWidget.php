@@ -16,7 +16,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   }
  * )
  */
-class SelectWidget extends FiveStartWidgetBase {
+class SelectWidget extends FivestarWidgetBase {
 
   /**
    * {@inheritdoc}

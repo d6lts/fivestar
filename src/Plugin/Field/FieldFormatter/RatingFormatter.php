@@ -16,7 +16,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   weight = 3
  * )
  */
-class RatingFormatter extends FiveStarFormatterBase {
+class RatingFormatter extends FivestarFormatterBase {
 
   /**
    *

@@ -17,7 +17,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   }
  * )
  */
-class StarsWidget extends FiveStartWidgetBase {
+class StarsWidget extends FivestarWidgetBase {
 
   /**
    * {@inheritdoc}

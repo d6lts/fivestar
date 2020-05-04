@@ -6,9 +6,9 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Render\Element;
 
 /**
- *
+ * Base class for Fivestar field formatters.
  */
-abstract class FiveStarFormatterBase extends FormatterBase {
+abstract class FivestarFormatterBase extends FormatterBase {
 
   /**
    * @param array $element

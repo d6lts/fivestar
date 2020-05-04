@@ -16,7 +16,7 @@ use Drupal\Core\Field\FieldItemListInterface;
  *   weight = 2
  * )
  */
-class PercentageFormatter extends FiveStarFormatterBase {
+class PercentageFormatter extends FivestarFormatterBase {
 
   /**
    *
