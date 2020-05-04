@@ -10,7 +10,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Show a preview of a widget using a custom CSS file.
+ * Shows a preview of a widget using a custom CSS file.
  */
 function theme_fivestar_preview_widget($variables) {
 //  $form = [
@@ -175,7 +175,7 @@ function theme_fivestar_formatter_percentage($variables) {
 }
 
 /**
- * Theme the fivestar form element by adding necessary css and javascript.
+ * Themes the fivestar form element by adding necessary css and javascript.
  */
 function theme_fivestar($variables) {
   $element = $variables['element'];
@@ -184,7 +184,7 @@ function theme_fivestar($variables) {
 }
 
 /**
- * Theme the straight HTML version of the fivestar select list. This is used
+ * Themes the straight HTML version of the fivestar select list. This is used
  * to remove the wrapping 'form-item' div from the select list.
  */
 function theme_fivestar_select($variables) {
@@ -199,16 +199,16 @@ function theme_fivestar_select($variables) {
 }
 
 /**
- * Display a plain HTML view-only version of the widget with a specified rating.
+ * Displays a plain HTML view-only version of the widget with a specified rating.
  *
- * @param $rating
+ * @param float $rating
  *   The desired rating to display out of 100 (i.e. 80 is 4 out of 5 stars).
- * @param $stars
+ * @param int $stars
  *   The total number of stars this rating is out of.
- * @param $tag
+ * @param string $tag
  *   Allows multiple ratings per node.
  *
- * @return
+ * @return string
  *   A themed HTML string representing the star widget.
  */
 function theme_fivestar_static($variables) {
@@ -258,7 +258,7 @@ function theme_fivestar_static($variables) {
 }
 
 /**
- * Display the text associated with a static star display.
+ * Displays the text associated with a static star display.
  *
  * Note that passing in explicit data types is extremely important when using
  * this function. A NULL value will exclude the value entirely from display,
@@ -267,16 +267,16 @@ function theme_fivestar_static($variables) {
  *
  * All ratings are from 0 to 100.
  *
- * @param $user_rating
+ * @param float $user_rating
  *   The current user's rating.
- * @param $average
+ * @param float $average
  *   The average rating.
- * @param $votes
+ * @param int $votes
  *   The total number of votes.
- * @param $stars
+ * @param int $stars
  *   The number of stars being displayed.
  *
- * @return
+ * @return string
  *   A themed HTML string representing the star widget.
  */
 function theme_fivestar_summary($variables) {
@@ -324,8 +324,9 @@ function theme_fivestar_summary($variables) {
       if (!empty($microdata['rating_count']['#attributes'])) {
         $rating_count_microdata = new Attribute($microdata['rating_count']['#attributes']);
       }
-      // We don't directly substitute $votes (i.e. use '@count') in format_plural,
-      // because it has a span around it which is not translatable.
+      // We don't directly substitute $votes (i.e. use '@count') in
+      // formatPlural() because it has a span around it which is not
+      // translatable.
       $votes_str = \Drupal::translation()->formatPlural($votes, '<span ' . $rating_count_microdata . '>@cnt</span> vote', '@cnt votes', [
         '@cnt' => intval($votes),
       ]);
@@ -343,7 +344,7 @@ function theme_fivestar_summary($variables) {
 }
 
 /**
- * Display a static fivestar value as stars with a title and description.
+ * Displays a static fivestar value as stars with a title and description.
  */
 function theme_fivestar_static_element($variables) {
   $output = '<div class="fivestar-static-form-item">';

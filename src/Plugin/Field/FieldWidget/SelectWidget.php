@@ -22,8 +22,7 @@ class SelectWidget extends FivestarWidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $settings = $items[$delta]->getFieldDefinition()
-      ->getSettings();
+    $settings = $items[$delta]->getFieldDefinition()->getSettings();
 
     $options = [];
     for ($i = 1; $i <= $settings['stars']; $i++) {

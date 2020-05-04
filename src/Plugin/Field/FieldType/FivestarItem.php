@@ -10,14 +10,14 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 
 /**
- * Plugin implementation of the 'fivestart' field type.
+ * Plugin implementation of the 'fivestar' field type.
  *
  * @FieldType(
  *   id = "fivestar",
- *   label = @Translation("Fivestar Rating"),
+ *   label = @Translation("Fivestar rating"),
  *   description = @Translation("Store a rating for this piece of content."),
  *   default_widget = "fivestar_stars",
- *   default_formatter = "fivestar_stars"
+ *   default_formatter = "fivestar_stars",
  * )
  */
 class FivestarItem extends FieldItemBase {

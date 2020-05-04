@@ -189,8 +189,8 @@ function fivestar_form_field_ui_field_edit_form_alter(&$form, $form_state) {
     $form['field']['cardinality']['#access'] = FALSE;
     $form['field']['cardinality']['#value'] = 1;
     // Setting "default value" here is confusing and for all practical purposes
-    // with existing widgets provided by fivestar (and anything else available
-    // in contrib) meaningless.
+    // meaningless with existing widgets provided by fivestar (and anything else
+    // available in contrib).
     $form['instance']['default_value_widget']['#access'] = FALSE;
   }
 }

@@ -11,8 +11,15 @@ use Drupal\Core\Render\Element;
 abstract class FivestarFormatterBase extends FormatterBase {
 
   /**
+   * Prepares the widget's render element for rendering.
+   *
    * @param array $element
+   *   The element to transform.
+   *
    * @return array
+   *   The transformed element.
+   *
+   * @see ::formElement()
    */
   public function previewsExpand(array $element) {
     foreach (Element::children($element) as $css) {
@@ -21,16 +28,18 @@ abstract class FivestarFormatterBase extends FormatterBase {
         '#css' => $css,
         '#name' => strtolower($element[$css]['#title']),
       ];
-      $element[$css]['#description'] = \Drupal::service('renderer')
-        ->render($vars);
+      $element[$css]['#description'] = \Drupal::service('renderer')->render($vars);
     }
+
     return $element;
   }
 
   /**
-   * Return list of all available widgets.
+   * Returns a list of all available Fivestar widgets.
    *
    * @return array
+   *   An associative array where each key is the location of a CSS file for a
+   *   fivestar widget and each value is the user-facing name of the widget.
    */
   protected function getAllWidgets() {
     return \Drupal::moduleHandler()->invokeAll('fivestar_widgets');

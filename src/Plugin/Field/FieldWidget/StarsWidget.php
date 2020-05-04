@@ -43,11 +43,20 @@ class StarsWidget extends FivestarWidgetBase {
       '#pre_render' => [[$this, 'previewsExpand']],
       '#attached' => ['library' => ['fivestar/fivestar.admin']],
     ];
+
     return $elements;
   }
 
   /**
+   * Prepares the widget's render element for rendering.
    *
+   * @param array $element
+   *   The element to transform.
+   *
+   * @return array
+   *   The transformed element.
+   *
+   * @see ::formElement()
    */
   public function previewsExpand(array $element) {
     foreach (Element::children($element) as $css) {
@@ -56,8 +65,7 @@ class StarsWidget extends FivestarWidgetBase {
         '#css' => $css,
         '#name' => strtolower($element[$css]['#title']),
       ];
-      $element[$css]['#description'] = \Drupal::service('renderer')
-        ->render($vars);
+      $element[$css]['#description'] = \Drupal::service('renderer')->render($vars);
     }
 
     return $element;
