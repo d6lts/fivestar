@@ -14,7 +14,7 @@ abstract class FivestarWidgetBase extends WidgetBase {
   /**
    * @return array
    */
-  protected function getAllWidget() {
+  protected function getAllWidgets() {
     return \Drupal::moduleHandler()->invokeAll('fivestar_widgets');
   }
 

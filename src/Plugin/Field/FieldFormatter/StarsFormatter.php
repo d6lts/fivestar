@@ -36,7 +36,7 @@ class StarsFormatter extends FivestarFormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $entity = $items->getEntity();
-    $widgets = $this->getAllWidget();
+    $widgets = $this->getAllWidgets();
     $form_builder = \Drupal::formBuilder();
     $widget_css_path = $this->getSetting('fivestar_widget');
     $display_settings = [
@@ -85,7 +85,7 @@ class StarsFormatter extends FivestarFormatterBase {
 
     $elements['fivestar_widget'] = [
       '#type' => 'radios',
-      '#options' => $this->getAllWidget(),
+      '#options' => $this->getAllWidgets(),
       '#default_value' => $this->getSetting('fivestar_widget'),
       '#attributes' => [
         'class' => [

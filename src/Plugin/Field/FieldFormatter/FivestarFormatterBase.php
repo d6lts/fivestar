@@ -32,7 +32,7 @@ abstract class FivestarFormatterBase extends FormatterBase {
    *
    * @return array
    */
-  protected function getAllWidget() {
+  protected function getAllWidgets() {
     return \Drupal::moduleHandler()->invokeAll('fivestar_widgets');
   }
 
