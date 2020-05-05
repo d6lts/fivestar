@@ -49,7 +49,8 @@ class FivestarItem extends FieldItemBase {
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     $property_definitions['rating'] = DataDefinition::create('integer')
       ->setLabel(t('Rating'));
-    $property_definitions['target'] = DataDefinition::create('integer');
+    $property_definitions['target'] = DataDefinition::create('integer')
+      ->setLabel(t('Target'));
     return $property_definitions;
   }
 
