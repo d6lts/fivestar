@@ -25,7 +25,7 @@ class FivestarForm extends FormBase {
    *
    * @var int
    */
-  private static $form_counter = 0;
+  protected static $formCounter = 0;
 
   /**
    * Creates a new object of this class.
@@ -45,10 +45,10 @@ class FivestarForm extends FormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    self::$form_counter += 1;
+    self::$formCounter += 1;
 
     // For correct submit work set unique name for every form in page.
-    return 'fivestar_form_' . self::$form_counter;
+    return 'fivestar_form_' . self::$formCounter;
   }
 
   /**
