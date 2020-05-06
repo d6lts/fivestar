@@ -90,7 +90,7 @@ function theme_fivestar_preview($variables) {
   ];
 
   $form = drupal_get_form('fivestar_custom_widget', $values, $settings);
-  $form = drupal_render($form);
+  $form = \Drupal::service('renderer')->render($form);
   // This regex is sadly necessary because having duplicate form_tokens or
   // form_id elements can cause the content type form to choke. Forms inside of
   // forms is also frowned upon, so this removes the wrapping form tag as well.
