@@ -143,38 +143,6 @@ function theme_fivestar_formatter_default($variables) {
 }
 
 /**
- * Theme function for 'rating' fivestar field formatter.
- */
-function theme_fivestar_formatter_rating($variables) {
-  $element = $variables['element'];
-
-  if (empty($element['#item']['average'])) {
-    $element['#item']['average'] = 0;
-  }
-  // Get number of stars.
-  $stars = (empty($element['#instance_settings']['stars'])) ? 5 : $element['#instance_settings']['stars'];
-  $average = $element['#item']['average'];
-  // Rating is X out of Y stars.
-  $rating = round(($average / 100) * $stars, 1);
-  $output = $rating . '/' . $stars;
-
-  return $output;
-}
-
-/**
- * Theme function for 'percentage' fivestar field formatter.
- */
-function theme_fivestar_formatter_percentage($variables) {
-  $element = $variables['element'];
-
-  if (empty($element['#item']['average'])) {
-    $element['#item']['average'] = 0;
-  }
-
-  return round($element['#item']['average'], 1) . '%';
-}
-
-/**
  * Themes the fivestar form element by adding necessary css and javascript.
  */
 function theme_fivestar($variables) {

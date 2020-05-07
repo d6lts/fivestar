@@ -115,20 +115,17 @@ function fivestar_theme() {
       'variables' => ['content' => NULL, 'type' => 'direct'],
       'file' => 'includes/fivestar.theme.inc',
     ],
+    // Field formatters.
     'fivestar_formatter_default' => [
       'function' => 'theme_fivestar_formatter_default',
       'render element' => 'element',
       'file' => 'includes/fivestar.theme.inc',
     ],
     'fivestar_formatter_rating' => [
-      'function' => 'theme_fivestar_formatter_rating',
       'render element' => 'element',
-      'file' => 'includes/fivestar.theme.inc',
     ],
     'fivestar_formatter_percentage' => [
-      'function' => 'theme_fivestar_formatter_percentage',
       'render element' => 'element',
-      'file' => 'includes/fivestar.theme.inc',
     ],
   ];
 }
@@ -241,4 +238,49 @@ function fivestar_library_info_build() {
     ];
   }
   return $libraries;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for the Fivestar rating formatter.
+ */
+function template_preprocess_fivestar_formatter_rating(array &$variables) {
+  $element = $variables['element'];
+
+  // Get number of stars being used. Usually 5 ...
+  $stars = $element['#instance_settings']['stars'];
+  if (empty($stars)) {
+    $stars = 5;
+  }
+  // Set stars variable.
+  $variables['stars'] = $stars;
+
+  // Get average, which ranges from 0 to 100.
+  $average = $element['#item']['average'];
+  if (empty($average)) {
+    $average = 0;
+  }
+  // Set average variable.
+  $variables['average'] = round($average, 1);
+
+  // Rating is # out of available stars.
+  // For example, if the average vote is 2 out of 5 stars, the rating
+  // would be 2.
+  $rating = round(($average / 100) * $stars, 1);
+  $variables['rating'] = $rating;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for the Fivestar percentage formatter.
+ */
+function template_preprocess_fivestar_formatter_percentage(array &$variables) {
+  $element = $variables['element'];
+
+  // Get average, which ranges from 0 to 100.
+  $average = $element['#item']['average'];
+  if (empty($average)) {
+    $average = 0;
+  }
+
+  // Set average variable.
+  $variables['average'] = round($average, 1);
 }
