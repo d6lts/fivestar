@@ -278,6 +278,9 @@ class FivestarItem extends FieldItemBase {
         $owner->id()
       );
     }
+
+    // No changes made to the Fivestar field item in this method.
+    return FALSE;
   }
 
   /**
