@@ -81,6 +81,7 @@ class FivestarForm extends FormBase {
     // Click on this element triggered from JS side.
     $form['submit'] = [
       '#type' => 'submit',
+      '#value' => $this->t('Rate'),
       '#ajax' => [
         'event' => 'click',
         'callback' => '::fivestarAjaxVote',
