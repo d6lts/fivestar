@@ -79,6 +79,23 @@ class StarsFormatter extends FivestarFormatterBase {
   /**
    * {@inheritdoc}
    */
+  public function settingsSummary() {
+    $widgets = $this->getAllWidgets();
+
+    $summary[] = $this->t('Style: @widget', [
+      '@widget' => isset($widgets[$this->getSetting('fivestar_widget')]) ? $widgets[$this->getSetting('fivestar_widget')] : $this->t('default'),
+    ]);
+    $summary[] = $this->t('Stars display: @style, Text display: @text', [
+      '@style' => $this->getSetting('display_format'),
+      '@text' => $this->getSetting('text_format'),
+    ]);
+
+    return $summary;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $entity = $items->getEntity();
