@@ -8,6 +8,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\TypedData\DataDefinition;
+use Drupal\user\EntityOwnerInterface;
 
 /**
  * Plugin implementation of the 'fivestar' field type.
@@ -356,17 +357,18 @@ class FivestarItem extends FieldItemBase {
    *   Determines under what conditions a user can leave a review.
    *
    * @return \Drupal\Core\Session\AccountInterface
-   *   The owner entity.
+   *   The account of the vote owner.
    */
   protected function getVoteOwner(FieldableEntityInterface $entity, $rating_mode) {
     switch ($rating_mode) {
-      case 'viewing':
-        return \Drupal::currentUser();
-
       case 'editing':
-        if (method_exists($entity, 'getOwner')) {
+        if ($entity instanceof EntityOwnerInterface) {
           return $entity->getOwner();
         }
+
+      // Fall through.
+      case 'viewing':
+      default:
         return \Drupal::currentUser();
     }
   }
