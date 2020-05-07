@@ -2,9 +2,9 @@
 
 namespace Drupal\fivestar\Element;
 
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Provides a fivestar form element.

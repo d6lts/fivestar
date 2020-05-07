@@ -2,8 +2,8 @@
 
 namespace Drupal\fivestar;
 
-use Drupal\votingapi\VoteResultFunctionManager;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\votingapi\VoteResultFunctionManager;
 
 /**
  * Contain methods for manage votes results.

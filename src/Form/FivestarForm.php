@@ -2,8 +2,8 @@
 
 namespace Drupal\fivestar\Form;
 
-use Drupal\Core\Form\FormBase;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\fivestar\VoteResultManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;

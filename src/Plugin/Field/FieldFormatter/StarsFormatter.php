@@ -2,8 +2,8 @@
 
 namespace Drupal\fivestar\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Plugin implementation of the 'fivestar_stars' formatter.

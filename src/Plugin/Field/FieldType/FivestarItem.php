@@ -2,12 +2,12 @@
 
 namespace Drupal\fivestar\Plugin\Field\FieldType;
 
-use Drupal\Core\Link;
-use Drupal\Core\Field\FieldItemBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\TypedData\DataDefinition;
 
 /**
  * Plugin implementation of the 'fivestar' field type.
