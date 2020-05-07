@@ -33,6 +33,52 @@ class StarsFormatter extends FivestarFormatterBase {
   /**
    * {@inheritdoc}
    */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $elements = parent::settingsForm($form, $form_state);
+
+    $elements['fivestar_widget'] = [
+      '#type' => 'radios',
+      '#options' => $this->getAllWidgets(),
+      '#default_value' => $this->getSetting('fivestar_widget'),
+      '#attributes' => [
+        'class' => [
+          'fivestar-widgets',
+          'clearfix',
+        ],
+      ],
+      '#pre_render' => [
+        [$this, 'previewsExpand'],
+      ],
+      '#attached' => [
+        'library' => ['fivestar/fivestar.admin'],
+      ],
+    ];
+
+    $elements['display_format'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Value to display as stars'),
+      '#options' => [
+        'average' => $this->t('Average vote'),
+      ],
+      '#default_value' => $this->getSetting('display_format'),
+    ];
+
+    $elements['text_format'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Text to display under the stars'),
+      '#options' => [
+        'none' => $this->t('No text'),
+        'average' => $this->t('Average vote'),
+      ],
+      '#default_value' => $this->getSetting('text_format'),
+    ];
+
+    return $elements;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $entity = $items->getEntity();
@@ -73,52 +119,6 @@ class StarsFormatter extends FivestarFormatterBase {
         '\Drupal\fivestar\Form\FivestarForm', $context
       );
     }
-
-    return $elements;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
-    $elements = parent::settingsForm($form, $form_state);
-
-    $elements['fivestar_widget'] = [
-      '#type' => 'radios',
-      '#options' => $this->getAllWidgets(),
-      '#default_value' => $this->getSetting('fivestar_widget'),
-      '#attributes' => [
-        'class' => [
-          'fivestar-widgets',
-          'clearfix',
-        ],
-      ],
-      '#pre_render' => [
-        [$this, 'previewsExpand'],
-      ],
-      '#attached' => [
-        'library' => ['fivestar/fivestar.admin'],
-      ],
-    ];
-
-    $elements['display_format'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Value to display as stars'),
-      '#options' => [
-        'average' => $this->t('Average vote'),
-      ],
-      '#default_value' => $this->getSetting('display_format'),
-    ];
-
-    $elements['text_format'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Text to display under the stars'),
-      '#options' => [
-        'none' => $this->t('No text'),
-        'average' => $this->t('Average vote'),
-      ],
-      '#default_value' => $this->getSetting('text_format'),
-    ];
 
     return $elements;
   }
