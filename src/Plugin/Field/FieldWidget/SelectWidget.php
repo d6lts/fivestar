@@ -25,10 +25,10 @@ class SelectWidget extends FivestarWidgetBase {
     $settings = $items[$delta]->getFieldDefinition()->getSettings();
 
     $options = [];
-    for ($i = 1; $i <= $settings['stars']; $i++) {
-      $this_value = ceil($i * 100 / $settings['stars']);
+    for ($star = 1; $star <= $settings['stars']; $star++) {
+      $this_value = ceil($star * 100 / $settings['stars']);
       $options[$this_value] = $this->t('Give @star/@count', [
-        '@star' => $i,
+        '@star' => $star,
         '@count' => $settings['stars'],
       ]);
     }

@@ -30,7 +30,7 @@ class VoteManager {
   /**
    * The vote storage.
    *
-   * @var \Drupal\votingapi\Entity\Vote
+   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $voteStorage;
 
