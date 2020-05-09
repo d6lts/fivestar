@@ -5,13 +5,12 @@ namespace Drupal\fivestar\Plugin\Field\FieldWidget;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Base class for Fivestar field widgets.
  */
-abstract class FivestarWidgetBase extends WidgetBase implements ContainerFactoryPluginInterface {
+abstract class FivestarWidgetBase extends WidgetBase {
 
   /**
    * The module handler.
