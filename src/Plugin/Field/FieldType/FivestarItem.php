@@ -293,7 +293,7 @@ class FivestarItem extends FieldItemBase {
    * @return \Drupal\Core\Entity\FieldableEntityInterface|null
    */
   public function getTargetEntity(FieldableEntityInterface $entity, array $field_settings) {
-    if ($field_settings['enable_voting_target'] !== 1) {
+    if ($field_settings['enable_voting_target'] !== TRUE) {
       return NULL;
     }
     if (!$entity->hasField($field_settings['target_bridge_field'])) {
