@@ -141,7 +141,7 @@ class FivestarTest extends BrowserTestBase {
     $this->drupalLogin($this->voterUser);
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw('No votes yet', 'Fivestar field has no votes.');
-    $this->assertFalse($this->xpath("//form[contains(@class, 'fivestar-widget')]"));
+    $this->assertEmpty($this->xpath("//form[contains(@class, 'fivestar-widget')]"));
   }
 
 }
