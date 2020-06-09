@@ -26,7 +26,7 @@ class StarsFormatter extends FivestarFormatterBase {
     return [
       'text_format' => 'average',
       'display_format' => 'average',
-      'fivestar_widget' => drupal_get_path('module', 'fivestar') . '/widgets/basic/basic.css',
+      'fivestar_widget' => 'basic',
     ] + parent::defaultSettings();
   }
 
@@ -38,7 +38,7 @@ class StarsFormatter extends FivestarFormatterBase {
 
     $elements['fivestar_widget'] = [
       '#type' => 'radios',
-      '#options' => $this->getAllWidgets(),
+      '#options' => $this->widgetManager->getWidgetsOptionSet(),
       '#default_value' => $this->getSetting('fivestar_widget'),
       '#attributes' => [
         'class' => [
@@ -80,10 +80,8 @@ class StarsFormatter extends FivestarFormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $widgets = $this->getAllWidgets();
-
     $summary[] = $this->t('Style: @widget', [
-      '@widget' => isset($widgets[$this->getSetting('fivestar_widget')]) ? $widgets[$this->getSetting('fivestar_widget')] : $this->t('default'),
+      '@widget' => $this->widgetManager->getWidgetLabel($this->getSelectedWidgetKey()),
     ]);
     $summary[] = $this->t('Stars display: @style, Text display: @text', [
       '@style' => $this->getSetting('display_format'),
@@ -99,12 +97,10 @@ class StarsFormatter extends FivestarFormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
     $entity = $items->getEntity();
-    $widgets = $this->getAllWidgets();
     $form_builder = \Drupal::formBuilder();
-    $widget_css_path = $this->getSetting('fivestar_widget');
+    $widget_active_key = $this->getSelectedWidgetKey();
     $display_settings = [
-      'name' => mb_strtolower($widgets[$widget_css_path]),
-      'css' => $widget_css_path,
+      'name' => $this->widgetManager->getWidgetInfo($widget_active_key) ? $widget_active_key : 'default',
     ] + $this->getSettings();
 
     if (!$items->isEmpty()) {
@@ -138,6 +134,28 @@ class StarsFormatter extends FivestarFormatterBase {
     }
 
     return $elements;
+  }
+
+  /**
+   * Gets the selected widget key.
+   *
+   * Sites that used an older version of the module will have
+   * a stale key set for their selected widget. This returns
+   * the proper, cleaned up version if that's the case.
+   *
+   * @return string
+   *   The active widget's key
+   */
+  protected function getSelectedWidgetKey() {
+    $setting = $this->getSetting('fivestar_widget') ?: 'default';
+    if (strpos($setting, '.css') === FALSE) {
+      return $setting;
+    }
+
+    $file_name = basename($setting);
+    $file_name_exploded = explode('.', $file_name);
+    $setting = reset($file_name_exploded);
+    return $setting;
   }
 
 }

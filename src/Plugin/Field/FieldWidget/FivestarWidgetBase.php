@@ -2,9 +2,9 @@
 
 namespace Drupal\fivestar\Plugin\Field\FieldWidget;
 
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\WidgetBase;
+use Drupal\fivestar\WidgetManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -13,11 +13,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class FivestarWidgetBase extends WidgetBase {
 
   /**
-   * The module handler.
+   * The Fivestar widget manager.
    *
-   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   * @var \Drupal\fivestar\WidgetManager
    */
-  protected $moduleHandler;
+  protected $widgetManager;
 
   /**
    * Constructs the FivestarWidgetBase object.
@@ -32,12 +32,12 @@ abstract class FivestarWidgetBase extends WidgetBase {
    *   The widget settings.
    * @param array $third_party_settings
    *   Any third party settings.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   The module handler.
+   * @param \Drupal\fivestar\WidgetManager $widget_manager
+   *   The widget manager.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, ModuleHandlerInterface $module_handler) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, WidgetManager $widget_manager) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
-    $this->moduleHandler = $module_handler;
+    $this->widgetManager = $widget_manager;
   }
 
   /**
@@ -50,19 +50,30 @@ abstract class FivestarWidgetBase extends WidgetBase {
       $configuration['field_definition'],
       $configuration['settings'],
       $configuration['third_party_settings'],
-      $container->get('module_handler')
+      $container->get('fivestar.widget_manager')
     );
   }
 
   /**
-   * Returns a list of all available Fivestar widgets.
+   * Gets the selected widget key.
    *
-   * @return array
-   *   An associative array where each key is the location of a CSS file for a
-   *   fivestar widget and each value is the user-facing name of the widget.
+   * Sites that used an older version of the module will have a stale key set
+   * for their selected widget. This returns the proper, cleaned up version
+   * if that's the case.
+   *
+   * @return string
+   *   The active widget's key
    */
-  protected function getAllWidgets() {
-    return $this->moduleHandler->invokeAll('fivestar_widgets');
+  protected function getSelectedWidgetKey() {
+    $setting = $this->getSetting('fivestar_widget') ?: 'default';
+    if (strpos($setting, '.css') === FALSE) {
+      return $setting;
+    }
+
+    $file_name = basename($setting);
+    $file_name_exploded = explode('.', $file_name);
+    $setting = reset($file_name_exploded);
+    return $setting;
   }
 
 }

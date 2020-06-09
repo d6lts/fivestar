@@ -26,3 +26,55 @@ fivestar.ajax:
     - core/jquery
     - core/drupal
     - core/jquery.once
+
+# Widgets
+# Right now does not include RTL handling
+basic:
+  css:
+    component:
+      widgets/basic/basic.css: {}
+
+craft:
+  css:
+    component:
+      widgets/craft/craft.css: {}
+
+drupal:
+  css:
+    component:
+      widgets/drupal/drupal.css: {}
+
+flames:
+  css:
+    component:
+      widgets/flames/flames.css: {}
+
+hearts:
+  css:
+    component:
+      widgets/hearts/hearts.css: {}
+
+lullabot:
+  css:
+    component:
+      widgets/lullabot/lullabot.css: {}
+
+minimal:
+  css:
+    component:
+      widgets/minimal/minimal.css: {}
+
+outline:
+  css:
+    component:
+      widgets/outline/outline.css: {}
+
+oxygen:
+  css:
+    component:
+      widgets/oxygen/oxygen.css: {}
+
+small:
+  css:
+    component:
+      widgets/small/small.css: {}

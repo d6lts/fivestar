@@ -34,7 +34,6 @@ class Fivestar extends FormElement {
       '#theme_wrappers' => ['form_element'],
       '#widget' => [
         'name' => 'default',
-        'css' => 'default',
       ],
       '#values' => [
         'vote_user' => 0,
@@ -151,12 +150,16 @@ class Fivestar extends FormElement {
         break;
     }
 
-    $class[] = 'fivestar-form-item';
-    $class[] = 'fivestar-' . $element['#widget']['name'];
+    $widget_name = mb_strtolower($element['#widget']['name']);
+    $widget_name_kebab = str_replace('_', '-', $widget_name);
 
-    if ($element['#widget']['name'] != 'default') {
-      $element['#attached']['library'][] = "fivestar/fivestar.{$element['#widget']['name']}";
+    $class[] = 'fivestar-form-item';
+    $class[] = 'fivestar-' . $widget_name_kebab;
+
+    if ($widget_name != 'default') {
+      $element['#attached']['library'][] = \Drupal::service('fivestar.widget_manager')->getWidgetLibrary($widget_name);
     }
+
     $element['#prefix'] = '<div ' . new Attribute(['class' => $class]) . '>';
     $element['#suffix'] = '</div>';
 

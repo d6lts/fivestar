@@ -5,7 +5,6 @@
  * A simple n-star voting widget, usable in other forms.
  */
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -196,48 +195,51 @@ function fivestar_form_field_ui_field_edit_form_alter(&$form, $form_state) {
  * Implements hook_fivestar_widgets().
  */
 function fivestar_fivestar_widgets() {
-  $widgets = &drupal_static(__FUNCTION__);
-  if (!isset($widgets)) {
-    $cache = \Drupal::cache()->get(__FUNCTION__);
-    if ($cache) {
-      $widgets = $cache->data;
-    }
-  }
+  // Widgets defined by the core Fivestar module.
+  $widgets = [
+    'basic' => [
+      'library' => 'fivestar/basic',
+      'label' => t('Basic'),
+    ],
+    'craft' => [
+      'library' => 'fivestar/craft',
+      'label' => t('Craft'),
+    ],
+    'drupal' => [
+      'library' => 'fivestar/drupal',
+      'label' => t('Drupal'),
+    ],
+    'flames' => [
+      'library' => 'fivestar/flames',
+      'label' => t('Flames'),
+    ],
+    'hearts' => [
+      'library' => 'fivestar/hearts',
+      'label' => t('Hearts'),
+    ],
+    'lullabot' => [
+      'library' => 'fivestar/lullabot',
+      'label' => t('Lullabot'),
+    ],
+    'minimal' => [
+      'library' => 'fivestar/minimal',
+      'label' => t('Minimal'),
+    ],
+    'outline' => [
+      'library' => 'fivestar/outline',
+      'label' => t('Outline'),
+    ],
+    'oxygen' => [
+      'library' => 'fivestar/oxygen',
+      'label' => t('Oxygen'),
+    ],
+    'small' => [
+      'library' => 'fivestar/small',
+      'label' => t('Small'),
+    ],
+  ];
 
-  if (!isset($widgets)) {
-    $widgets_directory = drupal_get_path('module', 'fivestar') . '/widgets';
-    $files = \Drupal::service('file_system')->scanDirectory($widgets_directory, '/\.css$/');
-
-    // Iterate over all .css files found.
-    foreach ($files as $file) {
-      if (mb_strpos($file->filename, '-rtl.css') === FALSE) {
-        $widgets[$file->uri] = Unicode::ucfirst(str_replace('-color', '', $file->name));
-      }
-    }
-    \Drupal::cache()->set(__FUNCTION__, $widgets);
-  }
   return $widgets;
-}
-
-/**
- * Implements hook_library_info_build().
- */
-function fivestar_library_info_build() {
-  $libraries = [];
-  $module_path = drupal_get_path('module', 'fivestar');
-  foreach (\Drupal::moduleHandler()->invokeAll('fivestar_widgets') as $path => $widget) {
-    // @todo ok, that's weird.
-    $path = str_replace($module_path . '/', '', $path);
-    $name = mb_strtolower($widget);
-    $libraries["fivestar.{$name}"] = [
-      'css' => [
-        'component' => [
-          $path => [],
-        ],
-      ],
-    ];
-  }
-  return $libraries;
 }
 
 /**

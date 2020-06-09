@@ -26,7 +26,7 @@ class StarsWidget extends FivestarWidgetBase {
     return [
       'display_format' => 'average',
       'text_format' => 'none',
-      'fivestar_widget' => drupal_get_path('module', 'fivestar') . '/widgets/basic/basic.css',
+      'fivestar_widget' => 'basic',
     ] + parent::defaultSettings();
   }
 
@@ -35,12 +35,13 @@ class StarsWidget extends FivestarWidgetBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $elements = parent::settingsForm($form, $form_state);
+
     $elements['fivestar_widget'] = [
       '#type' => 'radios',
-      '#options' => $this->getAllWidgets(),
-      '#default_value' => $this->getSetting('fivestar_widget'),
+      '#options' => $this->widgetManager->getWidgetsOptionSet(),
+      '#default_value' => $this->getSelectedWidgetKey(),
       '#attributes' => ['class' => ['fivestar-widgets', 'clearfix']],
-      '#pre_render' => [[$this, 'previewsExpand']],
+      // '#pre_render' => [[$this, 'previewsExpand']], // the theme function in here doesn't do anything
       '#attached' => ['library' => ['fivestar/fivestar.admin']],
     ];
 
@@ -51,10 +52,8 @@ class StarsWidget extends FivestarWidgetBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $widgets = $this->getAllWidgets();
-
     $summary[] = $this->t('Style: @widget', [
-      '@widget' => isset($widgets[$this->getSetting('fivestar_widget')]) ? $widgets[$this->getSetting('fivestar_widget')] : $this->t('default'),
+      '@widget' => $this->widgetManager->getWidgetLabel($this->getSelectedWidgetKey()),
     ]);
     $summary[] = $this->t('Stars display: @style, Text display: @text', [
       '@style' => $this->getSetting('display_format'),
@@ -76,13 +75,20 @@ class StarsWidget extends FivestarWidgetBase {
    * @see ::formElement()
    */
   public function previewsExpand(array $element) {
-    foreach (Element::children($element) as $css) {
+    $widgets = $this->widgetManager->getWidgets();
+
+    foreach (Element::children($element) as $widget_key) {
       $vars = [
         '#theme' => 'fivestar_preview_widget',
-        '#css' => $css,
-        '#name' => mb_strtolower($element[$css]['#title']),
+        // '#css' => ''
+        '#attached' => [
+          'library' => [
+            $widgets[$widget_key]['library'],
+          ],
+        ],
+        '#name' => $widgets[$widget_key]['label'],
       ];
-      $element[$css]['#description'] = \Drupal::service('renderer')->render($vars);
+      $element[$widget_key]['#description'] = \Drupal::service('renderer')->render($vars);
     }
 
     return $element;
@@ -92,14 +98,13 @@ class StarsWidget extends FivestarWidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $widgets = $this->getAllWidgets();
-    $active = $this->getSetting('fivestar_widget');
+    $widget_active_key = $this->getSelectedWidgetKey();
     $display_settings = [
-      'name' => isset($widgets[$active]) ? mb_strtolower($widgets[$active]) : 'default',
-      'css' => $active,
+      'name' => $this->widgetManager->getWidgetInfo($widget_active_key) ? $widget_active_key : 'default',
     ] + $this->getSettings();
     $settings = $items[$delta]->getFieldDefinition()->getSettings();
     $display_settings += $settings;
+
     $is_field_config_form = ($form_state->getBuildInfo()['form_id'] == 'field_config_edit_form');
     $voting_is_allowed = (bool) ($settings['rated_while'] == 'editing') || $is_field_config_form;
 

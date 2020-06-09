@@ -12,17 +12,22 @@
  * the fivestar module.
  *
  * @return array
- *   An array of key => value pairs suitable for inclusion as the #options in a
- *   select or radios form element. Each key must be the location of a css
- *   file for a fivestar widget. Each value should be the name of the widget.
+ *   An associative array of widget definitions. Each key must be formatted
+ *   as a machine name (ie no spaces, use underscores, etc).
  *
  * @see fivestar_fivestar_widgets()
  */
 function hook_fivestar_widgets() {
   // Letting fivestar know about my Cool and Awesome Stars.
   $widgets = [
-    'path/to/my/awesome/fivestar/css.css' => 'Awesome Stars',
-    'path/to/my/cool/fivestar/css.css' => 'Cool Stars',
+    'awesome' => [
+      'library' => 'mymodule/awesome',
+      'label' => t('Awesome Stars'),
+    ],
+    'cool' => [
+      'library' => 'mymodule/cool',
+      'label' => t('Cool Stars'),
+    ],
   ];
 
   return $widgets;
