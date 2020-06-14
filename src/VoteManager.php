@@ -7,9 +7,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 
 /**
- * Contain methods for manage votes.
- *
- * @package Drupal\fivestar
+ * Contains methods for managing votes.
  */
 class VoteManager {
 
@@ -52,6 +50,8 @@ class VoteManager {
    * Get vote types.
    *
    * @return array
+   *   An associative array with keys equal to the vote type machine ID and
+   *   values equal to the vote type human-readable label.
    */
   public function getVoteTypes() {
     $options = [];
@@ -98,11 +98,12 @@ class VoteManager {
    * Get votes by criteria.
    *
    * @param array $criteria
-   *   $criteria['entity_id']
-   *   $criteria['entity_type']
-   *   $criteria['type'] Vote type.
-   *   $criteria['user_id']
-   *   $criteria['vote_source']
+   *   Associative array of criteria. Keys are:
+   *   - entity_id: The entity id.
+   *   - entity_type: The entity type.
+   *   - type: Vote type.
+   *   - user_id: The user id.
+   *   - vote_source: The vote source.
    *
    * @return array
    *   Which contain vote ids.

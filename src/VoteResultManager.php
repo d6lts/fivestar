@@ -6,9 +6,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\votingapi\VoteResultFunctionManager;
 
 /**
- * Contain methods for manage votes results.
- *
- * @package Drupal\fivestar
+ * Contains methods for managing vote results.
  */
 class VoteResultManager {
 
@@ -66,6 +64,11 @@ class VoteResultManager {
    * Return default result collection.
    *
    * @return array
+   *   An associative array with keys:
+   *   - vote_sum: The sum of all votes.
+   *   - vote_user: The user's vote.
+   *   - vote_count: The number of votes.
+   *   - vote_average: The average of all votes.
    */
   public function getDefaultResults() {
     return [
