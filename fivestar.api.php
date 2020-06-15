@@ -2,23 +2,27 @@
 
 /**
  * @file
- * Provides API documentation for the fivestar module.
+ * Provides API documentation for the Fivestar module.
  */
 
 /**
- * Hook to add custom widgets to Fivestar.
+ * Hook to provide widgets for the Fivestar module.
  *
- * This hook allows other modules to create additional custom widgets for
- * the fivestar module.
+ * This hook is used by Fivestar to define the default widgets, and may be
+ * use by other modules to provide additional custom widgets for Fivestar.
  *
  * @return array
- *   An associative array of widget definitions. Each key must be formatted
- *   as a machine name (ie no spaces, use underscores, etc).
+ *   An associative array of widget definitions. Each element consists of
+ *   a key formatted as a machine name (ie no spaces, use underscores, etc),
+ *   and a value which is itself a two element array containing:
+ *   - label: The human-readable name of the widget, for use in the UI.
+ *   - library: The fully-qualified name of the library holding the CSS and
+ *     images for the widget.
  *
  * @see fivestar_fivestar_widgets()
  */
 function hook_fivestar_widgets() {
-  // Letting fivestar know about my Cool and Awesome Stars.
+  // Let Fivestar know about my Cool and Awesome Stars.
   $widgets = [
     'awesome' => [
       'library' => 'mymodule/awesome',
@@ -31,6 +35,27 @@ function hook_fivestar_widgets() {
   ];
 
   return $widgets;
+}
+
+/**
+ * Hook to alter the widgets used by Fivestar.
+ *
+ * This hook allows modules to alter the list of widgets used by Fivestar,
+ * for example to rename or remove widgets.
+ *
+ * @param array $widgets
+ *   An associative array of widget definitions, identical in structure
+ *   to the array returned by hook_fivestar_widgets().
+ *
+ * @see hook_fivestar_widgets()
+ * @see fivestar_widget_provider_fivestar_widgets_alter()
+ */
+function hook_fivestar_widgets_alter(array &$widgets) {
+  // Rename 'Awesome Stars' to 'Pretty good stars'.
+  $widgets['awesome']['label'] = t('Pretty good stars');
+
+  // Remove the 'Hearts' widget.
+  unset($widgets['hearts']);
 }
 
 /**
@@ -61,7 +86,7 @@ function hook_fivestar_widgets() {
  */
 function hook_fivestar_access($entity_type, $id, $vote_type, $uid) {
   if ($uid == 1) {
-    // We are never going to allow the admin user case a fivestar vote.
+    // We are never going to allow the admin user to cast a Fivestar vote.
     return FALSE;
   }
 }

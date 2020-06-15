@@ -2,7 +2,7 @@
 
 /**
  * @file
- * A test module which provides one rating widget for use by Fivestar.
+ * A test module which provides two rating widgetes for use by Fivestar.
  */
 
 /**
@@ -22,4 +22,12 @@ function fivestar_widget_provider_fivestar_widgets() {
   ];
 
   return $widgets;
+}
+
+/**
+ * Implements hook_fivestar_widgets_alter().
+ */
+function fivestar_widget_provider_fivestar_widgets_alter(&$widgets) {
+  // Change the label of the 'basic' widget to be 'Altered'.
+  $widgets['basic']['label'] = t('Altered');
 }

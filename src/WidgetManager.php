@@ -40,7 +40,12 @@ class WidgetManager {
       return $widgets;
     }
 
-    return $this->moduleHandler->invokeAll('fivestar_widgets');
+    $widgets = $this->moduleHandler->invokeAll('fivestar_widgets');
+    // Invoke hook_fivestar_widgets_alter() to allow all modules to alter the
+    // discovered widgets.
+    $this->moduleHandler->alter('fivestar_widgets', $widgets);
+
+    return $widgets;
   }
 
   /**
