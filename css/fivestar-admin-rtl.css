@@ -1,29 +1,29 @@
-div.fivestar-widgets div.form-item {
+[dir="rtl"] div.fivestar-widgets div.form-item {
   float: right;
 }
 
-#placeholder {
+[dir="rtl"] #placeholder {
   left: 0;
   right: auto;
 }
 
-.color-form label {
+[dir="rtl"] .color-form label {
   float: right;
 }
-.color-form .form-select {
+[dir="rtl"] .color-form .form-select {
   float: right;
 }
-.color-form #edit-fivestar-colors-matte {
+[dir="rtl"] .color-form #edit-fivestar-colors-matte {
   float: right;
 }
-.color-form .form-text {
+[dir="rtl"] .color-form .form-text {
   margin-left: 5px;
 }
 
-#fivestar-palette .lock {
+[dir="rtl"] #fivestar-palette .lock {
   float: right;
   right: -3px;
 }
-#fivestar-palette .form-item .form-item {
+[dir="rtl"] #fivestar-palette .form-item .form-item {
   float: right;
 }

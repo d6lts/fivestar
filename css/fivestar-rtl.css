@@ -1,53 +1,53 @@
-div.fivestar-widget-static .star,
-div.fivestar-widget .cancel,
-div.fivestar-widget .star {
+[dir="rtl"] div.fivestar-widget-static .star,
+[dir="rtl"] div.fivestar-widget .cancel,
+[dir="rtl"] div.fivestar-widget .star {
   float: right;
 }
 
 /* Combo Static and Rate Widget */
-.fivestar-combo-stars .fivestar-static-form-item {
+[dir="rtl"] .fivestar-combo-stars .fivestar-static-form-item {
   float: right;
   margin-left: 40px;
   margin-right: 0;
 }
-.fivestar-combo-stars .fivestar-form-item {
+[dir="rtl"] .fivestar-combo-stars .fivestar-form-item {
   float: right; /* RTL */
 }
 
 /* Static View-only Star Version */
-div.fivestar-widget-static br {
+[dir="rtl"] div.fivestar-widget-static br {
   clear: right;
 }
 
-div.fivestar-widget-static .star {
+[dir="rtl"] div.fivestar-widget-static .star {
   float: right;
   background-position: right 0;
 }
 
-div.fivestar-widget-static .star span.on {
+[dir="rtl"] div.fivestar-widget-static .star span.on {
   background-position: right -32px;
 }
 
-div.fivestar-widget-static .star span.off {
+[dir="rtl"] div.fivestar-widget-static .star span.off {
   background-position: right 0;
 }
 
 /* Javascript Star Version */
-div.fivestar-widget .cancel,
-div.fivestar-widget .cancel a {
+[dir="rtl"] div.fivestar-widget .cancel,
+[dir="rtl"] div.fivestar-widget .cancel a {
   background-position: right -16px;
 }
 
-div.fivestar-widget .star,
-div.fivestar-widget .star a,
-div.fivestar-widget .cancel a {
+[dir="rtl"] div.fivestar-widget .star,
+[dir="rtl"] div.fivestar-widget .star a,
+[dir="rtl"] div.fivestar-widget .cancel a {
   background-position: right 0;
 }
 
-div.fivestar-widget div.on a {
+[dir="rtl"] div.fivestar-widget div.on a {
   background-position: right -16px;
 }
-div.fivestar-widget div.hover a,
-div.rating div a:hover {
+[dir="rtl"] div.fivestar-widget div.hover a,
+[dir="rtl"] div.rating div a:hover {
   background-position: right -32px;
 }
