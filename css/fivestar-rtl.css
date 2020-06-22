@@ -11,7 +11,7 @@
   margin-right: 0;
 }
 [dir="rtl"] .fivestar-combo-stars .fivestar-form-item {
-  float: right; /* RTL */
+  float: right;
 }
 
 /* Static View-only Star Version */

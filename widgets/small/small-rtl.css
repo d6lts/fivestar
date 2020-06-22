@@ -14,6 +14,6 @@
   background-position: right -16px;
 }
 [dir="rtl"] .fivestar-small div.fivestar-widget div.hover a,
-[dir="rtl"] .fivestar-smalldiv.rating div a:hover {
+[dir="rtl"] .fivestar-small div.rating div a:hover {
   background-position: right -32px;
 }
