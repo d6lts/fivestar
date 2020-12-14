@@ -142,12 +142,12 @@ function fivestar_field_target($node, $field, $item) {
     // Use eval rather than drupal_eval to allow access to local variables.
     $target = eval($field['php_target']);
   }
-  elseif ($field['dynamic_target'] && !empty($node->$field['dynamic_target'])) {
-    if (is_array($node->$field['dynamic_target']) && is_numeric($node->{$field['dynamic_target']}[0]['nid'])) {
+  elseif ($field['dynamic_target'] && !empty($node->{$field['dynamic_target']})) {
+    if (is_array($node->{$field['dynamic_target']}) && is_numeric($node->{$field['dynamic_target']}[0]['nid'])) {
       $target = $node->{$field['dynamic_target']}[0]['nid'];
     }
-    elseif (is_numeric($node->$field['dynamic_target'])) {
-      $target = $node->$field['dynamic_target'];
+    elseif (is_numeric($node->{$field['dynamic_target']})) {
+      $target = $node->{$field['dynamic_target']};
     }
   }
   elseif (isset($item['target'][0]['nid'])) {
