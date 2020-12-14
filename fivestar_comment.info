@@ -4,8 +4,3 @@ package = Voting
 core = 6.x
 dependencies[] = votingapi
 dependencies[] = fivestar
-; Information added by Drupal 6 LTS vendors on 2020-12-14
-version = "6.x-1.22"
-core = "6.x"
-project = "fivestar"
-datestamp = "1607980646"
